@@ -6,15 +6,11 @@ pipeline {
   }
 
   stages {
-    stage('Check Python Version') {
-      steps {
-        sh 'python --version'
-      }
-    }
-
     stage('Run Python Script') {
       steps {
-        sh 'python app.py'
+        sh '''
+          python app.py | tee output.log
+        '''
       }
     }
   }
